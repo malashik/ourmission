@@ -1,0 +1,41 @@
+.Ourmission{
+    height: 260px;
+    width: 50%;
+    background-image: url('./home_mission_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: right;
+    position: relative;
+    color: #fff;
+}
+.Ourmission:hover{
+    cursor: pointer;
+    background: #313f55;
+}
+.Ourmission__info{
+    position: absolute;
+    width: 100%;
+    padding: 29px 37px 25px;
+    /* top: 150px; */
+    box-sizing: border-box;
+    bottom: -80px;
+    transition: .2s;
+}
+.Ourmission:hover .Ourmission__info{
+    bottom: 0;
+}
+.Ourmission:hover .Ourmission__text{
+    visibility: visible;
+}
+.Ourmission__title{
+    text-transform: uppercase;
+    font-size: 32px;
+    margin-bottom: 13px;
+}
+.Ourmission__text{
+    margin: 0;
+    visibility: hidden;
+}
