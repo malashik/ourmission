@@ -1,0 +1,52 @@
+.Slider {
+  width: 50%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+  position: relative;
+}
+.Slider__list {
+  width: 13000px;
+  position: relative;
+  padding: 0;
+  list-style: none;
+  left: calc(-100vw/2 - 50px /2);
+}
+.Slider__item {
+  width: calc(100vw/2);
+  height: 200px;
+  float: left;
+}
+.Slider__item_active{
+    color: red;
+}
+.Ourmission {
+  width: 100%;
+}
+.Slider__controls {
+  position: absolute;
+  display: flex;
+  left: 30px;
+  top: 10%;
+}
+.Slider__prev,
+.Slider__next {
+  margin-left: 20px;
+  cursor: pointer;
+}
+.Slider__control-points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  margin-right: 20px;
+}
+.Slider__control-points-item {
+  margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+}
