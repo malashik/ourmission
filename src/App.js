@@ -20,6 +20,18 @@ class App extends Component {
             title="3"
             text="Our mission is to become the most respected nearshore software delivery partner in Europe, championing quality over revenue, recruiting and retaining the 'best of the best', and by doing software development...properly. "
           />
+          <Ourmission
+            title="4"
+            text="Our mission is to become the most respected nearshore software delivery partner in Europe, championing quality over revenue, recruiting and retaining the 'best of the best', and by doing software development...properly. "
+          />
+          <Ourmission
+            title="5"
+            text="Our mission is to become the most respected nearshore software delivery partner in Europe, championing quality over revenue, recruiting and retaining the 'best of the best', and by doing software development...properly. "
+          />
+          <Ourmission
+            title="6"
+            text="Our mission is to become the most respected nearshore software delivery partner in Europe, championing quality over revenue, recruiting and retaining the 'best of the best', and by doing software development...properly. "
+          />
         </Slider>
       </div>
     );

@@ -11,7 +11,8 @@
   position: relative;
   padding: 0;
   list-style: none;
-  left: calc(-100vw/2 - 50px /2);
+  left:0;
+  transition: .3s;
 }
 .Slider__item {
   width: calc(100vw/2);
