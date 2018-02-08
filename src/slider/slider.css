@@ -9,6 +9,7 @@
 .Slider__list {
   width: 13000px;
   position: relative;
+  height: 100%;
   padding: 0;
   list-style: none;
   left:0;
@@ -16,7 +17,7 @@
 }
 .Slider__item {
   width: calc(100vw/2);
-  height: 200px;
+  height: 100%;
   float: left;
 }
 .Slider__item_active{

@@ -2,119 +2,129 @@ import React, { Component } from "react";
 import "./slider.css";
 
 class Slider extends Component {
-  moveSlide = function(e) {
-    // const Slider = document.querySelector(".Slider");
-    // const SliderList = document.querySelector(".Slider__list");
-    // let offset = Slider.offsetWidth;
-    // let sliders = document.getElementsByClassName("Slider__item");
-    // console.log("SliderList.style.left=", SliderList.style.left);
-    // console.log('SliderList', linkStyles);
-    // console.log(e.target, e.target.getBoundingClientRect().left);
-    // console.log(Slider.offsetWidth);
-  };
-
-  defineOffset = function() {
-    const Slider = document.querySelector(".Slider");
-    const SliderList = document.querySelector(".Slider__list");
-    let offset = Slider.offsetWidth;
-    console.log("defineOffset()!!!!!!!!!", Slider.offsetWidth);
-    return offset;
-  };
   constructor(props) {
     super(props);
     this.state = {
       count: 1,
-      offset: 1,
+      offset: 0,
       length: 0,
-      switch: true
+      directionRight: true,
+      setTimeoutSwitch: true
     };
   }
 
-  render() {
-    // console.log("this.state.count", this.state.count);
-    let childrenList = this.props.children.map((child, index) => {
-      // this.setState ({
-      //   length: this.length+1
-      // })
-      console.log("bla bla");
-      return (
-        <li key={"Slider__item" + index} className="Slider__item">
-          {child}
-        </li>
-      );
+  defineInitialState() {
+    const Slider = document.querySelector(".Slider");
+    console.log("defineOffset()!!!", Slider.offsetWidth);
+    let Offset = Slider.offsetWidth;
+    this.setState({
+      offset: Offset,
+      length: this.getChildrenList().length
     });
-    let controlPoints = this.props.children.map((child, index) => (
+  }
+  defineOffset() {
+    const Slider = document.querySelector(".Slider");
+    const Controls = document.querySelector(".Slider__control-points");
+
+    let offset = Slider.offsetWidth;
+    console.log("defineOffset()!!!", Slider.offsetWidth);
+    return offset;
+  }
+
+  getChildrenList() {
+    console.log("getChildrenList()");
+
+    return this.props.children.map((child, index) => (
+      <li
+        key={"Slider__item" + index}
+        id={"Slider__item" + index}
+        className="Slider__item"
+      >
+        {child}
+      </li>
+    ));
+  }
+
+  getControlList() {
+    console.log("getControlList()");
+
+    return this.props.children.map((child, index) => (
       <li
         key={"Slider__control-points-item" + index}
+        id={"Slider__control-points-item" + index}
         className="Slider__control-points-item"
       />
     ));
-    // for (let i = 0; i < childrenList.length; i++) {
-    //   this.setState({
-    //     length: i
-    //   });
-    // }
-    // this.setState({
-    //   length: childrenList.length
-    // });
-    // let leftOffset = this.defineOffset();
+  }
+
+  componentDidMount() {
+    this.defineInitialState();
+
+    setInterval(this.moveSlide.bind(this), 1000);
+    // clearTimeout(setInterval(this.moveSlide.bind(this), 1000));
+
+    // setInterval(() => {
+    //   const that = this;
+    //   console.log('click');
+    //   if (this.state.setTimeoutSwitch) {
+    //     this.moveSlide.bind(that);
+    //   }
+
+    // }, 1000);
+  }
+
+  moveSlide() {
+    if (this.state.setTimeoutSwitch) {
+      if (this.state.directionRight) {
+        this.setState({
+          count: ++this.state.count,
+          offset: this.defineOffset(),
+          length: this.getChildrenList().length
+        });
+      } else {
+        this.setState({
+          count: --this.state.count,
+          offset: this.defineOffset(),
+          length: this.getChildrenList().length
+        });
+      }
+      if (this.state.count === 1 || this.state.count > this.state.length - 1) {
+        this.setState({
+          directionRight: !this.state.directionRight
+        });
+      }
+    }
+  }
+  controlMove = function(e) {
+    let val = e.target.id.slice(-1);
+    // console.log(e.target.tagName === 'LI');
+    if (e.target.tagName === "LI") {
+      this.setState({
+        count: +val + 1,
+        setTimeoutSwitch: false
+      });
+    }
+  };
+
+  render() {
     return (
       <div className="Slider">
         <div
           style={{ left: (this.state.count - 1) * -this.state.offset + "px" }}
           className="Slider__list"
         >
-          {childrenList}
+          {this.getChildrenList()}
         </div>
-        {/* <div className="Slider__list">{childrenList}</div> */}
 
         <div className="Slider__controls">
-          <div className="Slider__control-points">{controlPoints}</div>
-          {this.state.count}
           <div
-            className="Slider__prev"
-            onClick={() => {
-              this.setState({
-                count: this.state.count - 1,
-                offset: this.defineOffset(),
-                length: childrenList.length
-              });
-            }}
+            className="Slider__control-points"
+            onClick={e => this.controlMove(e)}
           >
-            PREV
+            {this.getControlList()}
           </div>
-          <div
-            className="Slider__next"
-            onClick={() => {
-              if (this.state.switch) {
-                this.setState({
-                  count: ++this.state.count,
-                  offset: this.defineOffset(),
-                  length: childrenList.length
-                });
-              } else {
-                this.setState({
-                  count: --this.state.count,
-                  offset: this.defineOffset(),
-                  length: childrenList.length
-                });
-              }
-              if (
-                this.state.count == 1 ||
-                this.state.count == this.state.length 
-              ) {
-                this.setState({
-                  switch: !this.state.switch
-                });
-              }
-              console.log("this.state.count=", this.state.count);
-              console.log("this.state.offset=", this.state.offset);
-              console.log("this.state.length=", this.state.length);
-              console.log("this.state.switch=", this.state.switch);
-
-              // console.log("Slider", document.querySelector(".Slider").offsetWidth);
-            }}
-          >
+          {this.state.count}
+          <div className="Slider__next" onClick={() => this.moveSlide()}>
             NEXT
           </div>
         </div>
