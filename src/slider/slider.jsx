@@ -31,6 +31,7 @@ class Slider extends Component {
   getChildrenList() {
     return this.props.children.map((child, index) => (
       <li
+        style={{ width: this.state.offset + "px" }}
         key={"Slider__item" + index}
         id={"Slider__item" + index}
         className="Slider__item"
@@ -45,7 +46,11 @@ class Slider extends Component {
       <li
         key={"Slider__control-points-item" + index}
         id={"Slider__control-points-item" + index}
-        className="Slider__control-points-item"
+        className={
+          index === this.state.count - 1
+            ? "Slider__control-points-item Slider__control-points-item_active"
+            : "Slider__control-points-item"
+        }
       />
     ));
   }
@@ -59,13 +64,13 @@ class Slider extends Component {
     if (this.state.setTimeoutSwitch) {
       if (this.state.directionRight) {
         this.setState({
-          count: ++this.state.count,
+          count: this.state.count + 1,
           offset: this.defineOffset(),
           length: this.getChildrenList().length
         });
       } else {
         this.setState({
-          count: --this.state.count,
+          count: this.state.count - 1,
           offset: this.defineOffset(),
           length: this.getChildrenList().length
         });
@@ -81,6 +86,7 @@ class Slider extends Component {
   controlMove = function(e) {
     let val = e.target.id.slice(-1);
     if (e.target.tagName === "LI") {
+      console.log(e.target.className);
       this.setState({
         count: +val + 1,
         setTimeoutSwitch: false
@@ -90,7 +96,11 @@ class Slider extends Component {
 
   render() {
     return (
-      <div className="Slider">
+      <div
+        className="Slider"
+        //  onResize={setTimeout(()=>console.log('click'),1000)}
+        onResize={() => console.log("resized!")}
+      >
         <div
           style={{ left: (this.state.count - 1) * -this.state.offset + "px" }}
           className="Slider__list"

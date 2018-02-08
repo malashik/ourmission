@@ -16,7 +16,7 @@
   transition: .3s;
 }
 .Slider__item {
-  width: calc(100vw/2);
+  /* width: calc(100vw/2); */
   height: 100%;
   float: left;
 }
