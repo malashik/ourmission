@@ -86,7 +86,6 @@ class Slider extends Component {
   controlMove = function(e) {
     let val = e.target.id.slice(-1);
     if (e.target.tagName === "LI") {
-      console.log(e.target.className);
       this.setState({
         count: +val + 1,
         setTimeoutSwitch: false
@@ -98,8 +97,6 @@ class Slider extends Component {
     return (
       <div
         className="Slider"
-        //  onResize={setTimeout(()=>console.log('click'),1000)}
-        onResize={() => console.log("resized!")}
       >
         <div
           style={{ left: (this.state.count - 1) * -this.state.offset + "px" }}

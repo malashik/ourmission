@@ -12,16 +12,15 @@
   height: 100%;
   padding: 0;
   list-style: none;
-  left:0;
-  transition: .3s;
+  left: 0;
+  transition: 0.3s;
 }
 .Slider__item {
-  /* width: calc(100vw/2); */
   height: 100%;
   float: left;
 }
-.Slider__item_active{
-    color: red;
+.Slider__item_active {
+  color: red;
 }
 .Ourmission {
   width: 100%;
@@ -52,6 +51,16 @@
   background-color: rgb(170, 169, 169);
   cursor: pointer;
 }
-.Slider__control-points-item_active{
+.Slider__control-points-item_active {
   background-color: #fff;
+}
+
+@media only screen and (max-width: 981px) {
+  .Slider{
+    width: 100%;
+    height: 150px;
+  }
+  .Slider__control-points-item {
+    display: none;
+  }
 }
